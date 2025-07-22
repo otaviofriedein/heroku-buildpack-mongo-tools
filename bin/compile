@@ -1,0 +1,20 @@
+#!/bin/sh
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+MONGO_TOOLS_VERSION=100.9.4
+ARCH=amd64
+OS=linux
+
+echo ">> Baixando MongoDB Database Tools $MONGO_TOOLS_VERSION..."
+
+curl -sL https://fastdl.mongodb.org/tools/db/mongodb-database-tools-${OS}-${ARCH}-debian10-${MONGO_TOOLS_VERSION}.tgz \
+  -o /tmp/mongo-tools.tgz
+
+echo ">> Extraindo ferramentas..."
+mkdir -p $BUILD_DIR/.mongo-tools
+tar -xzf /tmp/mongo-tools.tgz -C $BUILD_DIR/.mongo-tools --strip-components=1
+
+echo ">> Adicionando ao PATH..."
+mkdir -p $BUILD_DIR/.profile.d
+echo 'export PATH="$HOME/.mongo-tools/bin:$PATH"' > $BUILD_DIR/.profile.d/mongo-tools.sh

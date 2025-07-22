@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "mongo-tools"
+exit 0
