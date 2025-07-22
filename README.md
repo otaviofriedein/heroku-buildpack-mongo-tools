@@ -3,7 +3,7 @@
 ### Adicione ao seu app Heroku
 
 ```
-heroku buildpacks:add --index 1 https://github.com/seu-usuario/heroku-buildpack-mongo-tools
+heroku buildpacks:add --index 1 https://github.com/otaviofriedein/heroku-buildpack-mongo-tools
 heroku buildpacks:add heroku/ruby # ou outro buildpack principal
 ```
 
