@@ -3,13 +3,19 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 MONGO_TOOLS_VERSION=100.9.4
-ARCH=amd64
-OS=linux
+ARCH=x86_64
+OS=ubuntu2204
+
+FILE=mongodb-database-tools-${OS}-${ARCH}-${MONGO_TOOLS_VERSION}
+URL=https://fastdl.mongodb.org/tools/db/${FILE}.tgz
 
 echo ">> Baixando MongoDB Database Tools $MONGO_TOOLS_VERSION..."
 
-curl -sL https://fastdl.mongodb.org/tools/db/mongodb-database-tools-${OS}-${ARCH}-debian10-${MONGO_TOOLS_VERSION}.tgz \
-  -o /tmp/mongo-tools.tgz
+curl -L -o /tmp/mongo-tools.tgz "$URL"
+if [ $? -ne 0 ]; then
+  echo "ERRO ao baixar $URL"
+  exit 1
+fi
 
 echo ">> Extraindo ferramentas..."
 mkdir -p $BUILD_DIR/.mongo-tools
